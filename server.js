@@ -3,8 +3,12 @@ const app = express()
 var pg = require('pg')
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.listen(process.env.PORT || 3001, function () {
-  console.log(`The server is up at PORT ${process.env.PORT || 3001}`)
+app.listen(process.env.PORT || 3000, function () {
+  console.log(`The server is up at PORT ${process.env.PORT || 3000}`)
+})
+app.use(express.static(__dirname + '/app'))
+app.get('/', function (request, response) {
+  response.sendFile(__dirname + '/app/index.html')
 })
 
 var elephantSqlUrl =
