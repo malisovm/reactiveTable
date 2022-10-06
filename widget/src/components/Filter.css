@@ -1,0 +1,22 @@
+.filterContainer {
+  height: 180px;
+  width: 160px;
+  margin: 10px;
+  font-size: 12px;
+  background-color: rgb(238, 238, 238);
+  padding: 10px;
+  border-radius: 5px;
+  float: left;
+}
+
+.filterHeader {
+  font-weight: bold;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
+
+select, input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-size: 12px;
+}
