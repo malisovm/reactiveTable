@@ -1,6 +1,10 @@
 # Reactive Table
 
-This is a sample app I wrote as a test assignment. It is a sortable table with a filter and pagination, written from scratch without any ready-made components. The data is stored in a PostgreSQL database.
+This app was written as a test assignment. The task was to write a table **from scratch (without ready components)** with the following features:
+- Sortable
+- Filters
+- Pagination
+- The data is stored in a PostgreSQL database (SQL queries also had to be written **manually, without ORM**)
 
 ### Stack
 
@@ -11,8 +15,4 @@ This is a sample app I wrote as a test assignment. It is a sortable table with a
 
 ### Live version
 
-A deployed version is available here [here](https://reactive-table.cyclic.app).
-
-### Building
-
-The [/dev](https://github.com/malisovm/reactive_table) branch can be launched with `cd widget && npm run start` + `cd server && node server.js`. If you want to run build, remove the proxy line from package.json. The compiled version is in the [/deploy](https://github.com/malisovm/reactive_table/tree/deploy) branch.
+A deployed version is available here [HERE](https://reactive-table.cyclic.app).

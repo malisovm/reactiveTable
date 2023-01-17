@@ -1,14 +1,18 @@
 const express = require('express')
+const path = require('node:path')
 const app = express()
 var pg = require('pg')
+require('dotenv').config()
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, '..', 'client', 'build')))
+
 app.listen(process.env.PORT || 3001, function () {
   console.log(`The server is up at PORT ${process.env.PORT || 3001}`)
 })
 
-var elephantSqlUrl =
-  'postgres://wmunniag:zJYypeMTwO3LnuG4YsjAffady8ovBk9V@ella.db.elephantsql.com/wmunniag'
+var elephantSqlUrl = process.env.DATABASE_URL
 var client = new pg.Client(elephantSqlUrl)
 client.connect(function (err) {
   if (err) {
@@ -51,7 +55,7 @@ app.post('/db', async (request, response) => {
       whereExpr = `WHERE ${column} ${condition} ${text}`}
     }
     var query = `${selectExpr} ${whereExpr} ${orderExpr} ${limitExpr}`
-    console.log(query)
+    //console.log(query)
     data = await client.query(query)
 
     countData = await client.query(`select count(*) from welbex ${whereExpr}`)
@@ -66,4 +70,9 @@ app.post('/db', async (request, response) => {
   } catch (err) {
     console.log(err.stack)
   }
+})
+
+// this should be after all other endpoints, do not move
+app.get('*', (_, res) => {
+  res.sendFile(path.join(__dirname, '..', 'client', 'build', 'index.html'))
 })
